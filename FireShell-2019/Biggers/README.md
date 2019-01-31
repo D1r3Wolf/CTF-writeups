@@ -12,15 +12,14 @@ d = inverse(e,totient) # 1209212612440750075543934346455968596029297883343910385
 mess = pow(C,d,N) # Claculation is impossible
 ```
 <h5> Hence calculation is difficult<br> Here the primes are repeating ,<br>
-  so we create a new modulus to bypass the calculation with large numbers. <br>
+  so we create a new modulus to bypass the calculation with large numbers. <br><br>
   Here we find the congruency of message according to our new modulus. But as the message is less than our new modulus pow(3,1545). The congruency will become the real message.<br>
-  We construct our new modulus, from that we have to find regarding Decryption key.<br>
-  Hence we consider a new modulus pow(3,1545)<br>
-```
+  So We construct our new modulus pow(3,1545), from that we have to find regarding Decryption key.<br>
+<pre>
 n = pow(3,1545)
 totient = pow(3,1544)*(3-1)
 d = inverse(e,totient)
 mess = pow(c,d,n)
 flag = long_to_bytes(mess)
-```
-### flag is F#{b1g_m0d_1s_unbr34k4bl3_4m_1_r1gh7?}
+</pre>
+  <h1>flag is F#{b1g_m0d_1s_unbr34k4bl3_4m_1_r1gh7?}</h1>
