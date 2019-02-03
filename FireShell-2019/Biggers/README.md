@@ -19,6 +19,6 @@ d = inverse(e,totient)
 mess = pow(c,d,n)
 flag = long_to_bytes(mess)
 ```
-[exploit.py]https://github.com/D1r3Wolf/CTF-writeups/blob/master/FireShell-2019/Biggers/exploit.py
+[exploit.py](https://github.com/D1r3Wolf/CTF-writeups/blob/master/FireShell-2019/Biggers/exploit.py)
 # flag is F#{b1g_m0d_1s_unbr34k4bl3_4m_1_r1gh7?}
 
