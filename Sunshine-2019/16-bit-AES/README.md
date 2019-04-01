@@ -1,6 +1,6 @@
 # Crypto Chall : 16-Bit-AES 
 ```
-Given that the Key is 16 bit , Which means 2 bytes ; Reapeting key
+Given that the Key is 16 bit , Which means 2 bytes ; Repeating key
 
 Given a netcat server : nc aes.sunshinectf.org 4200
 ___________________________________________________________________________________
@@ -44,7 +44,7 @@ Attack Function takes the Plaintext as p , Ciphertext as c ;
 Then It returns the Key , With Which the Plain text is Encrypted
 
 ### 2] Encrypt The Given Plaintext and Send the Cipher text
-Now Script for netcat connections;
+Now Script for netcat connection;
 ```py
 from pwn import *
 
