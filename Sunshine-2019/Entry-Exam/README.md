@@ -1,5 +1,13 @@
 # Scripting Chall : Entry-Exam
 ```
+http://ee.sunshinectf.org for the chall
+
+Given Website for the Exam : http://ee.sunshinectf.org/exam
+
+```
+### output
+```
+$ python3 run.py
 [0] Grabbed Answers :: dict_values(['C', 'B', 'B', 'D', 'C', 'A', 'D', 'B', 'A', 'C', 'A', 'C', 'B', 'B', 'C', 'B', 'B', 'D', 'B', 'C'])
 [+] Wow Move On :: <h1>Exam Section 2</h1><ol type="1">
 [1] Grabbed Answers :: dict_values(['A', 'B', 'D', 'A', 'D', 'A', 'C', 'D', 'C', 'B', 'B', 'B', 'A', 'B', 'C', 'A', 'A', 'B', 'B', 'C'])

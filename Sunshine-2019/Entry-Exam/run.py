@@ -26,23 +26,32 @@ Coords = {
 	20: (820,1244)
 }
 
-# A = Image.open("A.png") ; B = Image.open("B.png") ; C = Image.open("C.png") ; D = Image.open("D.png")
-def End(S):
-	flag = S.get(url).text
-	print("[+] Flag is :: %s"%flag)
 
 def Edit(I,O,C,Img):
-	E = Image.open(O+'.png')
+	E = Image.open('img/'+O+'.png')
 	Pix = E.load()
 	Ans_P = Img.load() ; w = C[0] ; h = C[1]
 	for i in range(340):
 		for j in range(60):
 			Ans_P[w+i,h+j] = Pix[i,j] 
 def Answer_Sheet(D):
-	Ans = Image.open("scantron.png")
+	Ans = Image.open("img/scantron.png")
 	for i in Coords:
 		Edit(i,D[i],Coords[i],Ans)
-	Ans.save("Ans.png")
+	Ans.save("img/Ans.png")
+
+def End(S):
+	flag = S.get(url).text
+	print("[+] Flag is :: %s"%flag)
+
+def Post(S):
+	File = { "file" : open("img/Ans.png",'rb').read()}
+	Data = { "submit" : "value" }
+	A = S.post(url,data=Data,files=File)
+	if '<h1>Exam Section' not in A.text:
+		print("[-] Error :: %s"%A.text)
+	else:
+		print("[+] Wow Move On :: %s"%(A.text.split('\n')[0]))
 
 def Get_Answers(html_doc):
 	soup = BeautifulSoup(html_doc, 'html.parser')
@@ -53,15 +62,6 @@ def Get_Answers(html_doc):
 		Q = Elem[i*5] ; A = [int(x) for x in Elem[i*5+1:i*5+5]]
 		D[i+1] = chr(65+A.index(int(eval(Q))))
 	return D
-
-def Post(S):
-	File = { "file" : open("Ans.png",'rb').read()}
-	Data = { "submit" : "value" }
-	A = S.post(url,data=Data,files=File)
-	if '<h1>Exam Section' not in A.text:
-		print("[-] Error :: %s"%A.text)
-	else:
-		print("[+] Wow Move On :: %s"%(A.text.split('\n')[0]))
 
 def Exam(S,i):
 	A = S.get(url).text
