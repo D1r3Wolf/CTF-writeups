@@ -1,10 +1,26 @@
 # Scripting Chall : Entry-Exam
 ```
 http://ee.sunshinectf.org for the chall
-
 Given Website for the Exam : http://ee.sunshinectf.org/exam
-
 ```
+![Exam1](https://raw.githubusercontent.com/D1r3Wolf/CTF-writeups/master/Sunshine-2019/Entry-Exam/img/Exam2.png)
+![Exam2](https://raw.githubusercontent.com/D1r3Wolf/CTF-writeups/master/Sunshine-2019/Entry-Exam/img/Exam1.png)
+```
+We have to find the Answers for all 20 Questions in Options (A,B,C,D)
+Now we have to mark that options in given scatron.jpg , As shown in figure below
+```
+![scatron](https://raw.githubusercontent.com/D1r3Wolf/CTF-writeups/master/Sunshine-2019/Entry-Exam/img/Ans.png)
+```
+And Then submit that jpg to the http://ee.sunshinectf.org/exam
+Then It gives another Exam :
+Our Tasks :::
+1). Grab the Answers of the Text
+2). Mark it on the Given scatron image file
+3). Then Post that image to site , Repeat it until the server gives the flag
+
+We have to script our code for those tasks
+```
+### Python CODE [run.py](https://github.com/D1r3Wolf/CTF-writeups/blob/master/Sunshine-2019/Entry-Exam/run.py "run.py")
 ### output
 ```
 $ python3 run.py
@@ -29,3 +45,4 @@ $ python3 run.py
 [+] Flag is :: sun{7h3_b357_7h3r3_15_7h3_b357_7h3r3_w45_7h3_b357_7h3r3_3v3r_w1ll_b3}
 
 ```
+### flag is :: `sun{7h3_b357_7h3r3_15_7h3_b357_7h3r3_w45_7h3_b357_7h3r3_3v3r_w1ll_b3}`
