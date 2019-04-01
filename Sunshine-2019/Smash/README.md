@@ -1,4 +1,4 @@
-# Crypto Chall : 16-Bit-AES 
+# Reverse : Smash 
 ```
 Given a Executable file : WrestleOfMania
 It asks for the acces code : Then it gives the result , code is valid or not
