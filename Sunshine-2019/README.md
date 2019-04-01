@@ -1,5 +1,5 @@
 # Sunshine - 2019 
-## Out Team is Invaders [1755 points] 22 place
+## Our Team is Invaders [1755 points] 22 place
 
 ## Chall's I did
 ```
