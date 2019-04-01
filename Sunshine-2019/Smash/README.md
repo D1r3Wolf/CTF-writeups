@@ -17,6 +17,7 @@ ___________________________________________________________________________
 *checkAccessCode* is the function which is checking our input
 
 In checkAccessCode :
+____________________________________________________________________________________________________
   process(Input,&local_88);
   prepare(Input);
   local_10 = verify(Input,sig,(size_t)siglen,tbs,local_8c);
@@ -24,11 +25,14 @@ In checkAccessCode :
   iVar1 = checkResult(local_8c);
   return (uint)(iVar1 == 1); 
 }
-```
+____________________________________________________________________________________________________
+
 In the functions : (process, prepare, verify, format, checkResult)
 We hace to make the checkResult function to return 1:
-checResult function ::::
-```
+`iVar1 = checkResult(local_8c);
+return (uint)(iVar1 == 1);`
+[+] checResult function ::::
+____________________________________________________________________________________________________
 undefined4 checkResult(int param_1){
   int iVar1;
   int *piVar2;
@@ -55,14 +59,13 @@ undefined4 checkResult(int param_1){
   }
   return 0
 }
-```
+____________________________________________________________________________________________________
 It is noting but Checking the Argument with the &DAT_00010de0;
-Equal or Not ; The Argument has to be Equal
-So Argument has to be &DAT_00010de0 ;
-from `if (0x1d < local_10)` this we confirm that the length is 0x1d+1 means `30` 
+Equal or Not ; The Argument has to be Equal to $DAT_00010de0
+from `if (0x1d < local_10)` we confirm that the length is 0x1d+1 means `30` 
 
 I Have used the gdb to Extract the &DAT_00010de0 (30 values)
-```
+____________________________________________________________________________________________________
 gdb-peda$ x/30w $edx-0x21d0
 0x56555de0: 0x00000e60  0x000003a8  0x00001b80  0x00000f60
 0x56555df0: 0x00000120  0x00000ea0  0x00000188  0x00000358
@@ -72,15 +75,15 @@ gdb-peda$ x/30w $edx-0x21d0
 0x56555e30: 0x00000ae0  0x00000062  0x00000360  0x00000340
 0x56555e40: 0x000005a0  0x00000180  0x000006e0  0x00000b40
 0x56555e50: 0x00001540  0x00000fa0
-```
+____________________________________________________________________________________________________
 `Check_res = [0x00000e60, 0x000003a8, 0x00001b80, 0x00000f60, 0x00000120, 0x00000ea0, 0x00000188, 0x00000358, 0x000001a0, 0x000009a0, 0x00000184, 0x000004e0, 0x00000c40, 0x00000c20, 0x000005a0, 0x000001c8, 0x000001d4, 0x000009c0, 0x000001cc, 0x00000b40, 0x00000ae0, 0x00000062, 0x00000360, 0x00000340, 0x000005a0, 0x00000180, 0x000006e0, 0x00000b40, 0x00001540, 0x00000fa0]`
 
 Now we got the local_8c ;  Which came from the `format` function:
 format(Input,&stack0xffffff74);
 iVar1 = checkResult(local_8c);
 
-format function:::
-```
+[+] format function:::
+____________________________________________________________________________________________________
 void format(int Input,int *param_2){
   void *__ptr;
   int local_10;
@@ -95,23 +98,24 @@ void format(int Input,int *param_2){
   free(__ptr);
   return;
 }
-```
+____________________________________________________________________________________________________
 It is nothing but Forming a string by Left shifting our Input with Argument2
 Param2[i] = Input[i] << Param2[i]
 
 String[i] = Input[i] << Param2[i]
 
-Through checkResukt function we came to know that the value of String should be
+1)Through checkResukt function we came to know that the value of String should be
 `Check_res = [0x00000e60, 0x000003a8, 0x00001b80, 0x00000f60, 0x00000120, 0x00000ea0, 0x00000188, 0x00000358, 0x000001a0, 0x000009a0, 0x00000184, 0x000004e0, 0x00000c40, 0x00000c20, 0x000005a0, 0x000001c8, 0x000001d4, 0x000009c0, 0x000001cc, 0x00000b40, 0x00000ae0, 0x00000062, 0x00000360, 0x00000340, 0x000005a0, 0x00000180, 0x000006e0, 0x00000b40, 0x00001540, 0x00000fa0]`
-I have extracted the Param2 values using gdb
-```
+2)I have extracted the Param2 values using gdb
+____________________________________________________________________________________________________
 gdb-peda$ x/w 0x56559980
 0x56559980: U"\005\003\006\005\002\005\003\003\003\005\002\004\006\005\005\002\002\005\002\006\005\001\003\004\005\003\004\006\006\005"
-```
+____________________________________________________________________________________________________
 
 Now we have String , Param2 
 Then :
 Input[i] = String[i] >> Param2
+```
 
 ```py
 Param2 = "\005\003\006\005\002\005\003\003\003\005\002\004\006\005\005\002\002\005\002\006\005\001\003\004\005\003\004\006\006\005"
