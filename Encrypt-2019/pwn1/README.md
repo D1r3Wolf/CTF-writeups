@@ -2,9 +2,9 @@
 
 ```
 Given netcat connection : `nc 104.154.106.182 2345`
-Binary file [pwn1](https://github.com/D1r3Wolf/CTF-writeups/blob/master/Encrypt-2019/pwn1/pwn1?raw=true) 32 bit executable
+Binary file pwn1 32 bit executable
 ```
-* Execting Binary
+* Execting Binary file : [pwn1](https://github.com/D1r3Wolf/CTF-writeups/blob/master/Encrypt-2019/pwn1/pwn1?raw=true)
 ```
 $ ./pwn1 
 Tell me your name: input

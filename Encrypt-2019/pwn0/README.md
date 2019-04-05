@@ -2,9 +2,9 @@
 
 ```
 Given netcat connect `nc 104.154.106.182 1234`
-Binary file [pwn0](https://github.com/D1r3Wolf/CTF-writeups/blob/master/Encrypt-2019/pwn0/pwn0?raw=true) 32 bit executable
+Binary file  32 bit executable
 ```
-* Executing Binary file
+* Executing Binary file: [pwn0](https://github.com/D1r3Wolf/CTF-writeups/blob/master/Encrypt-2019/pwn0/pwn0?raw=true)
 ```
 $ ./pwn0 
 How's the josh?
@@ -14,22 +14,7 @@ Bye!
 ```
 ### Analyzing the Binary
 ```assembly
-$ gdb pwn0 
-GNU gdb (Ubuntu 8.1-0ubuntu3) 8.1.0.20180409-git
-Copyright (C) 2018 Free Software Foundation, Inc.
-License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
-This is free software: you are free to change and redistribute it.
-There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
-and "show warranty" for details.
-This GDB was configured as "x86_64-linux-gnu".
-Type "show configuration" for configuration details.
-For bug reporting instructions, please see:
-<http://www.gnu.org/software/gdb/bugs/>.
-Find the GDB manual and other documentation resources online at:
-<http://www.gnu.org/software/gdb/documentation/>.
-For help, type "help".
-Type "apropos word" to search for commands related to "word"...
-Reading symbols from pwn0...(no debugging symbols found)...done.
+$ gdb ./pwn0 
 gdb-peda$ disass main
 Dump of assembler code for function main:
    0x080484f1 <+0>:	push   ebp
