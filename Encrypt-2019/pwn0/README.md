@@ -3,7 +3,7 @@
 ```
 Given pwn0
 ```
-```python
+```assembly
 $ gdb pwn0 
 GNU gdb (Ubuntu 8.1-0ubuntu3) 8.1.0.20180409-git
 Copyright (C) 2018 Free Software Foundation, Inc.
