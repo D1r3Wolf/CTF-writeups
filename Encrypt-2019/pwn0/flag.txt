@@ -1,1 +1,1 @@
-encryptCTF{L3t5_R4!53_7h3_J05H}
+encryptCTF{Fake_flag}
