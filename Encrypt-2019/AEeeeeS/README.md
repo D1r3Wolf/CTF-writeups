@@ -7,7 +7,7 @@ the key given in [AEeeeeS.key](https://raw.githubusercontent.com/D1r3Wolf/CTF-wr
 And
 ciphertext: c68145ccbc1bd6228da45a574ad9e29a77ca32376bc1f2a1e4cd66c640450d77
 ```
-
+* Key is also given we just need to convert to string and decrypt!
 ```py
 from Crypto.Util.number import long_to_bytes as lb
 from Crypto.Cipher import AES
