@@ -68,7 +68,7 @@ gdb-peda$ b*0x0804854e
 Breakpoint 1 at 0x804854e
 gdb-peda$ r < [inp]()
 Starting program: /home/aj/Videos/CTF-writeups/Encrypt-2019/pwn0/pwn0 < inp
-Hows the josh?
+How's the josh?
 
 [----------------------------------registers-----------------------------------]
 EAX: 0xffffd06c ("QQQQRRRRSSSSTTTTUUUUVVVVWWWWXXXXYYYYZZZZ")
