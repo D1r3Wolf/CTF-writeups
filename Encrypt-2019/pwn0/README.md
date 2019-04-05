@@ -111,7 +111,7 @@ gdb-peda$
 ```
 * It is comparing the QQQQ with H!gh
 * The padding is "AAAABBBBCCCCDDDDEEEEFFFFGGGGHHHHIIIIJJJJKKKKLLLLMMMMNNNNOOOOPPPP" ('A'*64)
-* payload = padding + p32("H!gh")
+* payload = padding + "H!gh"
 * Python script [exp.py](https://github.com/D1r3Wolf/CTF-writeups/blob/master/Encrypt-2019/pwn0/exp.py)
 ### output
 ```
