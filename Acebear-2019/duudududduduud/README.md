@@ -194,8 +194,8 @@ session_remember : 1FpxWQyccSU6z6xePwv990SfdilJUgIUpg0RHTss5Zcq92uLD6Va4KjpdHpBz
 ```
 ### here we go
 ![admin](https://raw.githubusercontent.com/D1r3Wolf/CTF-writeups/master/Acebear-2019/duudududduduud/img/admin.png)
-> There is a upload option for admin
-[upload](https://raw.githubusercontent.com/D1r3Wolf/CTF-writeups/master/Acebear-2019/duudududduduud/img/upload.png)<br>
+**There is a upload option for admin**
+![upload](https://raw.githubusercontent.com/D1r3Wolf/CTF-writeups/master/Acebear-2019/duudududduduud/img/upload.png)<br>
 > Now on checking the [upload.php](https://github.com/D1r3Wolf/CTF-writeups/blob/master/Acebear-2019/duudududduduud/backup/upload.php)<br>
 ```php
 $json = json_decode(file_get_contents($_SESSION["folder"]."/manifest.json"),true);
