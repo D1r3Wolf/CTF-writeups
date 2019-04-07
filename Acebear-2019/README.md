@@ -1,5 +1,5 @@
 # Acebear CTF - 2019 
-## Our Team is Invaders [1755 points] 22 place
+## Our Team is Invaders [1100] 16 place
 
 ## Chall's I did
 ```
