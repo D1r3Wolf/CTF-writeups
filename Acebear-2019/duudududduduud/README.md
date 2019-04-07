@@ -12,7 +12,7 @@ And a hint : backup.bak?
 > No one can became an admin
 * But There is bug to expliot to became a admin
 > An SQL injection in login.php & This is the only SQL injection in the site
-![sql]()
+![sql](https://raw.githubusercontent.com/D1r3Wolf/CTF-writeups/master/Acebear-2019/duudududduduud/img/login-php.png)
 ```php
 $username = check_cookie($_COOKIE["session_remember"],$key);
 $tmp = $username;
@@ -24,7 +24,7 @@ $username is directly placed into the $query
 But the $username is coming from the check_cookie($_COOKIE["session_remember"])
 check_cookie is in /lib/connection.php ,
 ```
-![check_cookie]()
+![check_cookie](https://raw.githubusercontent.com/D1r3Wolf/CTF-writeups/master/Acebear-2019/duudududduduud/img/gen_cookie.png)
 ```
 It is an AES decryption ; 
 Our need is to make the check_cookie to return our needed string ; For that
