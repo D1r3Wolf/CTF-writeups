@@ -243,6 +243,8 @@ Access them on http://54.169.92.223/uploads/a3d7ebbe913126890938bdfe90833490/
 ```
 It is pretty interesting and
 I liked this challenge very much
+Thanks to
+	author: komang4130
 ```
 
 ### flag is : `AceBear{From_Crypt0_m1sus3_t0_Rc3_______}`
